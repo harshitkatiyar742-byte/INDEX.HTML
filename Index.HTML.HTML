@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recruitment Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #00aaff, #0047b3);
+      margin: 0;
+      padding: 0;
+      color: #000;
+    }
+
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    .header-title {
+      font-size: 24px;
+      font-weight: bold;
+      flex: 1;
+      text-align: center;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .button-group {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .job-listings {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .job-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .job-item:last-child {
+      border-bottom: none;
+    }
+
+    .job-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .job-desc {
+      margin: 5px 0;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 12px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    .disclaimer {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      height: 50px;
+    }
+
+    .job-apply-button {
+      margin-top: 10px;
+      background-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img class="logo" src="https://i.ibb.co/fV0tLTXN/5IMAGE.jpg" alt="5 Circles Logo">
+  <div class="header-title">Recruitment Portal</div>
+</header>
+
+<div class="container">
+  <div class="button-group">
+    <button onclick="openModal('applyModal')">Apply Now</button>
+    <button onclick="openModal('postModal')">Post a Job</button>
+  </div>
+
+  <div class="job-listings">
+    <h2>Current Job Openings</h2>
+
+    <div class="job-item">
+      <div class="job-title">Software Developer</div>
+      <div class="job-desc">We are looking for a skilled developer with 2+ years of experience in full-stack development.</div>
+      <div class="job-desc"><strong>Location:</strong> Bengaluru</div>
+      <button class="job-apply-button" onclick="openModal('applyModal')">Apply</button>
+    </div>
+
+    <div class="job-item">
+      <div class="job-title">Marketing Executive</div>
+      <div class="job-desc">Join our dynamic marketing team to drive brand awareness and growth.</div>
+      <div class="job-desc"><strong>Location:</strong> Mumbai</div>
+      <button class="job-apply-button" onclick="openModal('applyModal')">Apply</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- Apply Modal -->
+<div id="applyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('applyModal')">&times;</span>
+    <h2>Apply for a Job</h2>
+    <form 
+      id="applyForm"
+      action="https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTZhMDYzMjA0MzI1MjZiNTUzNDUxM2Ei_pc" 
+      method="POST"
+    >
+      <div class="form-group">
+        <label for="applicantName">Full Name</label>
+        <input type="text" name="Full_Name" id="applicantName" required>
+      </div>
+      <div class="form-group">
+        <label for="applicantEmail">Email</label>
+        <input type="email" name="Email" id="applicantEmail" required>
+      </div>
+      <div class="form-group">
+        <label for="applicantPosition">Position Applying For</label>
+        <input type="text" name="Position" id="applicantPosition" required>
+      </div>
+      <div class="form-group">
+        <label for="applicantResume">Resume Link</label>
+        <input type="url" name="Resume_Link" id="applicantResume" required>
+      </div>
+      <p class="disclaimer">
+        <strong>Note:</strong> Once you submit the application, you will be redirected to a skill assessment form. That is the initial screening round.
+      </p>
+      <input type="submit" value="Submit Application">
+    </form>
+  </div>
+</div>
+
+<!-- Post Job Modal -->
+<div id="postModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('postModal')">&times;</span>
+    <h2>Post a New Job</h2>
+    <form>
+      <div class="form-group">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" id="jobTitle" required>
+      </div>
+      <div class="form-group">
+        <label for="jobDescription">Job Description</label>
+        <textarea id="jobDescription" rows="4" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="jobLocation">Location</label>
+        <input type="text" id="jobLocation" required>
+      </div>
+      <input type="submit" value="Post Job">
+    </form>
+  </div>
+</div>
+
+<script>
+  function openModal(modalId) {
+    document.getElementById(modalId).style.display = "block";
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+  };
+
+  // Handle Apply form submission with redirect
+  document.getElementById("applyForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: "POST",
+      body: formData
+    }).then(() => {
+      window.location.href = "https://forms.gle/RyCvsYUBxfCo2Nrh6";
+    }).catch((error) => {
+      alert("There was an error submitting the form. Please try again.");
+      console.error("Error:", error);
+    });
+  });
+</script>
+
+</body>
+</html>
